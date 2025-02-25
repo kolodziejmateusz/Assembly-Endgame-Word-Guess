@@ -6,6 +6,14 @@ import { useState } from "react";
 export default function App() {
   const [currentWord, setCurrentWord] = useState("teacher");
 
+  const alphabet = "abcdefghijklmnopqrstuvwxyz";
+
+  const keyboardElements = alphabet
+    .split("")
+    .map((letter, index) => (
+      <button key={index}>{letter.toUpperCase()}</button>
+    ));
+
   const letterElements = currentWord
     .split("")
     .map((letter, index) => <span key={index}>{letter.toUpperCase()}</span>);
@@ -46,6 +54,8 @@ export default function App() {
         ))}
       </section>
       <section className="word">{letterElements}</section>
+      <section className="keyboard">{keyboardElements}</section>
+      <button className="new-game">New Game</button>
     </main>
   );
 }
