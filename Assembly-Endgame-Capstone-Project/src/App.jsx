@@ -7,14 +7,14 @@ export default function App() {
   /**
    * Goal: Allow the user to start guessing the letters
    *
-   * Challenge: Create a new array in state to hold user's
-   * guessed letters. When the user chooses a letter, add
-   * that letter to this state array.
+   * Challenge: Update the keyboard when a letter is right
+   * or wrong.
    *
-   * Don't worry about whether it was a right or wrong
-   * guess yet.
+   * Bonus: use the `clsx` package to easily add conditional
+   * classNames to the keys of the keyboard. Check the docs
+   * to learn how to use it 📖
    */
-  const [currentWord, setCurrentWord] = useState("teacher");
+  const [currentWord, setCurrentWord] = useState("malina");
   const [guessedLetters, setGuessedLetters] = useState([]);
 
   const alphabet = "abcdefghijklmnopqrstuvwxyz";
@@ -25,11 +25,21 @@ export default function App() {
     );
   }
 
-  const keyboardElements = alphabet.split("").map((letter, index) => (
-    <button onClick={() => addGuessedLetter(letter)} key={index}>
-      {letter.toUpperCase()}
-    </button>
-  ));
+  const keyboardElements = alphabet.split("").map((letter, index) => {
+    let buttonColorClass = "";
+    if (guessedLetters.includes(letter))
+      if (currentWord.split("").includes(letter)) buttonColorClass = "correct";
+      else buttonColorClass = "wrong";
+    return (
+      <button
+        className={buttonColorClass}
+        onClick={() => addGuessedLetter(letter)}
+        key={index}
+      >
+        {letter.toUpperCase()}
+      </button>
+    );
+  });
 
   const letterElements = currentWord
     .split("")
