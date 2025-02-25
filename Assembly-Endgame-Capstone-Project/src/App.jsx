@@ -1,10 +1,5 @@
 import "./app.css";
-/**
- * Goal: Build out the main parts of our app
- *
- * Challenge: Add a header with the game title
- * and description. Startin' out easy 🙂🚶‍➡️
- */
+
 export default function App() {
   return (
     <main>
@@ -15,10 +10,10 @@ export default function App() {
           from Assembly!
         </p>
       </header>
-      <div className="info">
-        <span>You win!</span>
-        <span>Well done!🎉</span>
-      </div>
+      <section className="game-status">
+        <h2>You win!</h2>
+        <p>Well done!🎉</p>
+      </section>
     </main>
   );
 }
