@@ -2,6 +2,7 @@ import Language from "./components/Language";
 import "./app.css";
 import languageArr from "./data/languages";
 import { useState } from "react";
+import clsx from "clsx";
 
 export default function App() {
   /**
@@ -26,13 +27,18 @@ export default function App() {
   }
 
   const keyboardElements = alphabet.split("").map((letter, index) => {
-    let buttonColorClass = "";
-    if (guessedLetters.includes(letter))
-      if (currentWord.split("").includes(letter)) buttonColorClass = "correct";
-      else buttonColorClass = "wrong";
+    const isGuessed = guessedLetters.includes(letter);
+    const isCorrect = isGuessed && currentWord.includes(letter);
+    const isWrong = isGuessed && !currentWord.includes(letter);
+    const className = clsx({
+      correct: isCorrect,
+      wrong: isWrong,
+    });
+
+    console.log(className);
     return (
       <button
-        className={buttonColorClass}
+        className={className}
         onClick={() => addGuessedLetter(letter)}
         key={index}
       >
