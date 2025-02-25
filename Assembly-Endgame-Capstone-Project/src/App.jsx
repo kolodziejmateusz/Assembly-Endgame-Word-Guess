@@ -4,33 +4,38 @@ import languageArr from "./data/languages";
 import { useState } from "react";
 
 export default function App() {
+  /**
+   * Goal: Allow the user to start guessing the letters
+   *
+   * Challenge: Create a new array in state to hold user's
+   * guessed letters. When the user chooses a letter, add
+   * that letter to this state array.
+   *
+   * Don't worry about whether it was a right or wrong
+   * guess yet.
+   */
   const [currentWord, setCurrentWord] = useState("teacher");
+  const [guessedLetters, setGuessedLetters] = useState([]);
 
   const alphabet = "abcdefghijklmnopqrstuvwxyz";
 
-  const keyboardElements = alphabet
-    .split("")
-    .map((letter, index) => (
-      <button key={index}>{letter.toUpperCase()}</button>
-    ));
+  function addGuessedLetter(letter) {
+    setGuessedLetters((prev) =>
+      prev.includes(letter) ? prev : [...prev, letter]
+    );
+  }
+
+  const keyboardElements = alphabet.split("").map((letter, index) => (
+    <button onClick={() => addGuessedLetter(letter)} key={index}>
+      {letter.toUpperCase()}
+    </button>
+  ));
 
   const letterElements = currentWord
     .split("")
     .map((letter, index) => <span key={index}>{letter.toUpperCase()}</span>);
 
   return (
-    /**
-     * Goal: Build out the main parts of our app
-     *
-     * Challenge:
-     * 1. Save a "currentWord" in state. Initialize as "react".
-     * 2. Map over the letters of the word (you'll need to turn
-     *    the string into an array of letters first) and display
-     *    each one as a <span>. Capitalize the letters when
-     *    displaying them.
-     * 3. Style to look like the design. You can get the underline
-     *    effect on the box using `border-bottom`.
-     */
     <main>
       <header>
         <h1>Assembly: Endgame</h1>
