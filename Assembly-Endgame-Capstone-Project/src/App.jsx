@@ -1,19 +1,27 @@
 import Language from "./components/Language";
 import "./app.css";
 import languageArr from "./data/languages";
+import { useState } from "react";
 
 export default function App() {
+  const [currentWord, setCurrentWord] = useState("teacher");
+
+  const letterElements = currentWord
+    .split("")
+    .map((letter, index) => <span key={index}>{letter.toUpperCase()}</span>);
+
   return (
     /**
      * Goal: Build out the main parts of our app
      *
-     * Challenge: Create the language chips. Use the
-     * `languages.js` file to pull in the array of
-     * languages to use, which contains the language
-     * name, background color, and text color.
-     *
-     * Hint for layout: use a flex container that can wrap
-     * to layout the languages.
+     * Challenge:
+     * 1. Save a "currentWord" in state. Initialize as "react".
+     * 2. Map over the letters of the word (you'll need to turn
+     *    the string into an array of letters first) and display
+     *    each one as a <span>. Capitalize the letters when
+     *    displaying them.
+     * 3. Style to look like the design. You can get the underline
+     *    effect on the box using `border-bottom`.
      */
     <main>
       <header>
@@ -37,6 +45,7 @@ export default function App() {
           />
         ))}
       </section>
+      <section className="word">{letterElements}</section>
     </main>
   );
 }
