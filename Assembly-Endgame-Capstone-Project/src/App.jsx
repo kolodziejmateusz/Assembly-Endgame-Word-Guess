@@ -15,6 +15,10 @@ export default function App() {
           from Assembly!
         </p>
       </header>
+      <div className="info">
+        <span>You win!</span>
+        <span>Well done!🎉</span>
+      </div>
     </main>
   );
 }

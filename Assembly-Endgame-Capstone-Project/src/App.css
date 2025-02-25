@@ -28,3 +28,16 @@ header > p {
   max-width: 350px;
   color: #8e8e8e;
 }
+
+.info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: rgb(51, 136, 98);
+  height: 60px;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+
