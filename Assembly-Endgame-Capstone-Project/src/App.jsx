@@ -8,11 +8,12 @@ export default function App() {
   /**
    * Goal: Add in the incorrect guesses mechanism to the game
    *
-   * Challenge: Derive a variable (`wrongGuessCount`) for the
-   * number of incorrect guesses by using the other state
-   * values we're already holding in the component.
+   * Challenge: When mapping over the languages, determine how
+   * many of them have been "lost" and add the "lost" class if
+   * so.
    *
-   * console.log the wrongGuessCount for now
+   * Hint: use the wrongGuessCount combined with the index of
+   * the item in the array while inside the languages.map code
    */
 
   // State values
@@ -82,6 +83,7 @@ export default function App() {
             name={language.name}
             backgroundColor={language.backgroundColor}
             color={language.color}
+            className={clsx(index < wrongGuessCount && "lost")}
           />
         ))}
       </section>
