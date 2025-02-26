@@ -6,18 +6,26 @@ import clsx from "clsx";
 
 export default function App() {
   /**
-   * Goal: Allow the user to start guessing the letters
+   * Goal: Add in the incorrect guesses mechanism to the game
    *
-   * Challenge: Update the keyboard when a letter is right
-   * or wrong.
+   * Challenge: Derive a variable (`wrongGuessCount`) for the
+   * number of incorrect guesses by using the other state
+   * values we're already holding in the component.
    *
-   * Bonus: use the `clsx` package to easily add conditional
-   * classNames to the keys of the keyboard. Check the docs
-   * to learn how to use it 📖
+   * console.log the wrongGuessCount for now
    */
+
+  // State values
   const [currentWord, setCurrentWord] = useState("malina");
   const [guessedLetters, setGuessedLetters] = useState([]);
 
+  // Derived values
+  const wrongGuessCount = guessedLetters.filter(
+    (letter) => !currentWord.includes(letter)
+  ).length;
+  console.log(wrongGuessCount);
+
+  // Static values
   const alphabet = "abcdefghijklmnopqrstuvwxyz";
 
   function addGuessedLetter(letter) {
@@ -35,7 +43,6 @@ export default function App() {
       wrong: isWrong,
     });
 
-    console.log(className);
     return (
       <button
         className={className}
