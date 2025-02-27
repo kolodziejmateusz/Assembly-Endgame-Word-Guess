@@ -7,16 +7,17 @@ import clsx from "clsx";
 
 export default function App() {
   /**
-   * Challenge: Bid farewell to each programming language
-   * as it gets erased from existance 👋😭
+   * Backlog:
    *
-   * Use the `getFarewellText` function from the new utils.js
-   * file to generate the text.
+   * ✅ Farewell messages in status section
+   * - Disable the keyboard when the game is over
+   * - Fix a11y issues
+   * - Make the New Game button reset the game
+   * - Choose a random word from a list of words
+   * - Confetti drop when the user wins
    *
-   * Check hint.md if you're feeling stuck, but do your best
-   * to solve the challenge without the hint! 🕵️
+   * Challenge: Disable the keyboard when the game is over
    */
-
   // State values
   const [currentWord, setCurrentWord] = useState("malina");
   const [guessedLetters, setGuessedLetters] = useState([]);
@@ -58,6 +59,7 @@ export default function App() {
     return (
       <button
         className={className}
+        disabled={isGameOver}
         onClick={() => addGuessedLetter(letter)}
         key={index}
       >
