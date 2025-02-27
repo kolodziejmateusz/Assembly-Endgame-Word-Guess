@@ -53,6 +53,11 @@ export default function App() {
     );
   }
 
+  function startNewGame() {
+    setCurrentWord(getRandomWord());
+    setGuessedLetters([]);
+  }
+
   const keyboardElements = alphabet.split("").map((letter, index) => {
     const isGuessed = guessedLetters.includes(letter);
     const isCorrect = isGuessed && currentWord.includes(letter);
@@ -165,7 +170,11 @@ export default function App() {
         </p>
       </section>
       <section className="keyboard">{keyboardElements}</section>
-      {isGameOver && <button className="new-game">New Game</button>}
+      {isGameOver && (
+        <button onClick={startNewGame} className="new-game">
+          New Game
+        </button>
+      )}
     </main>
   );
 }
