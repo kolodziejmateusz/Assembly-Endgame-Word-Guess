@@ -8,28 +8,9 @@ import { useWindowSize } from "react-use";
 import Confetti from "react-confetti";
 
 export default function App() {
-  /**
-   * Backlog:
-   *
-   * ✅ Farewell messages in status section
-   * ✅ Disable the keyboard when the game is over
-   * ✅ Fix a11y issues
-   * - Choose a random word from a list of words
-   * - Make the New Game button reset the game
-   * - Confetti drop when the user wins
-   *
-   * Challenge: Choose a random word from a list of words
-   *
-   * 1. Create a new function in utils.js that chooses a random
-   *    word from the imported array of words and returns it
-   * 2. import the function into this file
-   * 3. Figure out where to use that function.
-   */
-
   // State values
-  const [currentWord, setCurrentWord] = useState("react");
+  const [currentWord, setCurrentWord] = useState(() => getRandomWord());
   const [guessedLetters, setGuessedLetters] = useState([]);
-  console.log(currentWord);
 
   // Derived values
   const numGuessesLeft = languageArr.length - 1;
@@ -83,14 +64,6 @@ export default function App() {
       </button>
     );
   });
-
-  // const letterElements = currentWord
-  //   .split("")
-  //   .map((letter, index) => (
-  //     <span key={index}>
-  //       {guessedLetters.includes(letter) ? letter.toUpperCase() : ""}
-  //     </span>
-  //   ));
 
   const letterElements = currentWord.split("").map((letter, index) => {
     const shouldRevealLetter = isGameLost || guessedLetters.includes(letter);

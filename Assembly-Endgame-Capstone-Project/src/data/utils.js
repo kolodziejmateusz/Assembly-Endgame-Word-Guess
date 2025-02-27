@@ -1,4 +1,4 @@
-import { words } from "./words";
+import { englishWords } from "./englishWords";
 
 export function getFarewellText(language) {
   const options = [
@@ -21,6 +21,6 @@ export function getFarewellText(language) {
 }
 
 export function getRandomWord() {
-  const randomIndex = Math.floor(Math.random() * words.length);
-  return words[randomIndex];
+  const randomIndex = Math.floor(Math.random() * englishWords.length);
+  return englishWords[randomIndex];
 }
