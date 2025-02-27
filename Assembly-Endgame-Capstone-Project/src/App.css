@@ -41,6 +41,7 @@ header > p {
 section.game-status {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   color: #f9f4da;
   width: 100%;
@@ -56,6 +57,16 @@ section.game-status.won {
 
 section.game-status.lost {
   background-color: #ba2a2a;
+}
+
+section.game-status.farewell {
+  background-color: #7a5ea7;
+  border: 1px dashed #323232;
+}
+
+section.game-status.farewell > p {
+  font-style: italic;
+  font-weight: 400;
 }
 
 section.game-status > p {

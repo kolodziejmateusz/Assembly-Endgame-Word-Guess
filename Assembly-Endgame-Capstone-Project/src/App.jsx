@@ -1,21 +1,20 @@
 import Language from "./components/Language";
 import "./app.css";
 import languageArr from "./data/languages";
+import { getFarewellText } from "./data/utils";
 import { useState } from "react";
 import clsx from "clsx";
 
 export default function App() {
   /**
-   * Goal: Add in the incorrect guesses mechanism to the game
+   * Challenge: Bid farewell to each programming language
+   * as it gets erased from existance 👋😭
    *
-   * Challenge:
-   * Conditionally render either the "won" or "lost" statuses
-   * from the design, both the text and the styles, based on the
-   * new derived variables.
+   * Use the `getFarewellText` function from the new utils.js
+   * file to generate the text.
    *
-   * Note: We always want the surrounding `section` to be rendered,
-   * so only change the content inside that section. Otherwise the
-   * content on the page would jump around a bit too much.
+   * Check hint.md if you're feeling stuck, but do your best
+   * to solve the challenge without the hint! 🕵️
    */
 
   // State values
@@ -26,13 +25,17 @@ export default function App() {
   const wrongGuessCount = guessedLetters.filter(
     (letter) => !currentWord.includes(letter)
   ).length;
-  console.log(wrongGuessCount);
+  // console.log(wrongGuessCount);
 
   const isGameWon = currentWord
     .split("")
     .every((letter) => guessedLetters.includes(letter));
   const isGameLost = wrongGuessCount >= languageArr.length - 1;
   const isGameOver = isGameWon || isGameLost;
+  const lastGuessedLetter = guessedLetters[guessedLetters.length - 1];
+  const isLastGuessIncorrect =
+    lastGuessedLetter && !currentWord.includes(lastGuessedLetter);
+  console.log(isLastGuessIncorrect);
 
   // Static values
   const alphabet = "abcdefghijklmnopqrstuvwxyz";
@@ -74,11 +77,20 @@ export default function App() {
   const gameStatusClass = clsx("game-status", {
     won: isGameWon,
     lost: isGameLost,
+    farewell: !isGameOver && isLastGuessIncorrect,
   });
 
   function rednerGameStatus() {
-    if (!isGameOver) {
+    if (!isGameOver && !isLastGuessIncorrect) {
       return null;
+    }
+
+    if (!isGameOver && isLastGuessIncorrect) {
+      return (
+        <>
+          <p>{getFarewellText(languageArr[wrongGuessCount - 1].name)}</p>
+        </>
+      );
     }
 
     if (isGameWon) {
