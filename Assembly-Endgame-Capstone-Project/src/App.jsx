@@ -60,6 +60,8 @@ export default function App() {
       <button
         className={className}
         disabled={isGameOver}
+        aria-disabled={guessedLetters.includes(letter)}
+        aria-label={`Letter ${letter}`}
         onClick={() => addGuessedLetter(letter)}
         key={index}
       >
@@ -122,7 +124,9 @@ export default function App() {
           from Assembly!
         </p>
       </header>
-      <section className={gameStatusClass}>{rednerGameStatus()}</section>
+      <section aria-live="polite" role="status" className={gameStatusClass}>
+        {rednerGameStatus()}
+      </section>
       <section className="language-chips">
         {languageArr.map((language, index) => (
           <Language
@@ -135,6 +139,17 @@ export default function App() {
         ))}
       </section>
       <section className="word">{letterElements}</section>
+      <section className="sr-only" aria-live="polite" role="status">
+        <p>
+          Current word:{" "}
+          {currentWord
+            .split("")
+            .map((letter) =>
+              guessedLetters.includes(letter) ? letter + "." : "blank."
+            )
+            .join(" ")}
+        </p>
+      </section>
       <section className="keyboard">{keyboardElements}</section>
       {isGameOver && <button className="new-game">New Game</button>}
     </main>
