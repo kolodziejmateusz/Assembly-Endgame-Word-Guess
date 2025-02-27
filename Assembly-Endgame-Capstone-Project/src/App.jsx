@@ -76,6 +76,29 @@ export default function App() {
     lost: isGameLost,
   });
 
+  function rednerGameStatus() {
+    if (!isGameOver) {
+      return null;
+    }
+
+    if (isGameWon) {
+      return (
+        <>
+          <h2>You win!</h2>
+          <p>Well done! 🎉</p>
+        </>
+      );
+    }
+    if (isGameLost) {
+      return (
+        <>
+          <h2>Game over!</h2>
+          <p>You lose! Better start learning Assembly 😭</p>
+        </>
+      );
+    }
+  }
+
   return (
     <main>
       <header>
@@ -85,21 +108,7 @@ export default function App() {
           from Assembly!
         </p>
       </header>
-      <section className={gameStatusClass}>
-        {isGameOver ? (
-          isGameWon ? (
-            <>
-              <h2>You win!</h2>
-              <p>Well done! 🎉</p>
-            </>
-          ) : (
-            <>
-              <h2>Game over!</h2>
-              <p>You lose! Better start learning Assembly 😭</p>
-            </>
-          )
-        ) : null}
-      </section>
+      <section className={gameStatusClass}>{rednerGameStatus()}</section>
       <section className="language-chips">
         {languageArr.map((language, index) => (
           <Language
