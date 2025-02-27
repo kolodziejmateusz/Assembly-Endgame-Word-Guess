@@ -1,7 +1,7 @@
 import Language from "./components/Language";
 import "./app.css";
 import languageArr from "./data/languages";
-import { getFarewellText } from "./data/utils";
+import { getFarewellText, getRandomWord } from "./data/utils";
 import { useState } from "react";
 import clsx from "clsx";
 
@@ -10,17 +10,24 @@ export default function App() {
    * Backlog:
    *
    * ✅ Farewell messages in status section
-   * - Disable the keyboard when the game is over
-   * - Fix a11y issues
-   * - Make the New Game button reset the game
+   * ✅ Disable the keyboard when the game is over
+   * ✅ Fix a11y issues
    * - Choose a random word from a list of words
+   * - Make the New Game button reset the game
    * - Confetti drop when the user wins
    *
-   * Challenge: Disable the keyboard when the game is over
+   * Challenge: Choose a random word from a list of words
+   *
+   * 1. Create a new function in utils.js that chooses a random
+   *    word from the imported array of words and returns it
+   * 2. import the function into this file
+   * 3. Figure out where to use that function.
    */
+
   // State values
-  const [currentWord, setCurrentWord] = useState("malina");
+  const [currentWord, setCurrentWord] = useState(() => getRandomWord());
   const [guessedLetters, setGuessedLetters] = useState([]);
+  console.log(currentWord);
 
   // Derived values
   const numGuessesLeft = languageArr.length - 1;
