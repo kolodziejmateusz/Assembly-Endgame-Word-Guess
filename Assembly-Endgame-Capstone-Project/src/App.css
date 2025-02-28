@@ -25,6 +25,7 @@ header > h1 {
   font-size: 1.25rem;
   font-weight: 500;
   color: #f9f4da;
+  margin-top: 0;
 }
 
 header > p {
@@ -45,6 +46,22 @@ section.game-status {
   min-height: 60px;
   border-radius: 4px;
   margin-block: 30px;
+}
+
+section.game-status button {
+  border-radius: 3px;
+  background-color: #f0f0f0;
+  color: #333333;
+  margin: 5px;
+  padding: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+section.game-status .active {
+  background-color: #4caf50;
+  color: #ffffff;
+  font-weight: bold;
 }
 
 section.game-status.won {

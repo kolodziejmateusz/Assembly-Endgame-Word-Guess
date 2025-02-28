@@ -1,16 +1,28 @@
 import Language from "./components/Language";
 import "./app.css";
 import languageArr from "./data/languages";
-import { getFarewellText, getRandomWord } from "./data/utils";
+import {
+  getFarewellText,
+  getRandomEnglishWord,
+  getRandomPolishWord,
+} from "./data/utils";
 import { useState } from "react";
 import clsx from "clsx";
 import { useWindowSize } from "react-use";
 import Confetti from "react-confetti";
 
 export default function App() {
+  function getRandomWord() {
+    return selectedLanguage === "English"
+      ? getRandomEnglishWord()
+      : getRandomPolishWord();
+  }
+
   // State values
+  const [selectedLanguage, setSelectedLanguage] = useState("English");
   const [currentWord, setCurrentWord] = useState(() => getRandomWord());
   const [guessedLetters, setGuessedLetters] = useState([]);
+  console.log(currentWord);
 
   // Derived values
   const numGuessesLeft = languageArr.length - 1;
@@ -25,7 +37,6 @@ export default function App() {
   const lastGuessedLetter = guessedLetters[guessedLetters.length - 1];
   const isLastGuessIncorrect =
     lastGuessedLetter && !currentWord.includes(lastGuessedLetter);
-  console.log(isLastGuessIncorrect);
 
   // Static values
   const alphabet = "abcdefghijklmnopqrstuvwxyz";
@@ -40,6 +51,14 @@ export default function App() {
   function startNewGame() {
     setCurrentWord(getRandomWord());
     setGuessedLetters([]);
+  }
+
+  function changeLanguage(lang) {
+    setSelectedLanguage(lang);
+    setCurrentWord(
+      lang === "English" ? getRandomEnglishWord() : getRandomPolishWord()
+    );
+    setGuessedLetters([]); // Resetowanie gry po zmianie języka
   }
 
   const keyboardElements = alphabet.split("").map((letter, index) => {
@@ -85,7 +104,22 @@ export default function App() {
 
   function rednerGameStatus() {
     if (!isGameOver && !isLastGuessIncorrect) {
-      return null;
+      return (
+        <div>
+          <button
+            className={selectedLanguage === "English" ? "active" : ""}
+            onClick={() => changeLanguage("English")}
+          >
+            English
+          </button>
+          <button
+            className={selectedLanguage === "Polish" ? "active" : ""}
+            onClick={() => changeLanguage("Polish")}
+          >
+            Polski
+          </button>
+        </div>
+      );
     }
 
     if (!isGameOver && isLastGuessIncorrect) {
