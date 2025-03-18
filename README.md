@@ -2,6 +2,10 @@
 
 🚀 **Assembly: Endgame** to interaktywna gra w zgadywanie słów w stylu wisielca, w której masz 8 prób, aby odgadnąć losowe słowo. Każda błędna litera eliminuje jeden język programowania – nie pozwól, by Assembly przejął kontrolę! 🔥
 
+## 🚀 Demo
+Aplikacja jest hostowana na **GitHub Pages**. Możesz ją zobaczyć tutaj:
+[➡ Zagraj w Assembly: Endgame](https://kolodziejmateusz.github.io/Assembly-Endgame-Word-Guess/)
+
 ## ✨ Funkcje
 - Obsługa dwóch języków: 🇬🇧 Angielski i 🇵🇱 Polski
 - Losowe słowa do odgadnięcia
@@ -19,9 +23,6 @@
 4. **Utrzymuj języki przy życiu**! 💀 Czaszki oznaczają eliminację technologii
 5. **Wygraj lub przegraj** – jeśli nie odgadniesz na czas, pora nauczyć się Assembly! 🤖
 
-## 🚀 Demo
-Aplikacja jest hostowana na **GitHub Pages**. Możesz ją zobaczyć tutaj:
-[➡ Zagraj w Assembly: Endgame](https://kolodziejmateusz.github.io/Assembly-Endgame-Word-Guess/)
 
 ## ⚙️ Technologie
 - ⚛ **React** – podstawowy framework
