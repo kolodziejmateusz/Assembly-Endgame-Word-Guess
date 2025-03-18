@@ -33,15 +33,19 @@ Aplikacja jest hostowana na **GitHub Pages**. Możesz ją zobaczyć tutaj:
 ## 🖼️ Zrzuty ekranu
 
 1. **Ekran startowy**
+
    ![Ekran startowy](./src/data/images/1.png)
 
 2. **W trakcie gry**
+
    ![Rozgrywka](./src/data/images/2.png)
 
 3. **Wygrana**
+
    ![Wygrana](./src/data/images/3.png)
 
 4. **Przegrana**
+
    ![Przegrana](./src/data/images/4.png)
 
 
