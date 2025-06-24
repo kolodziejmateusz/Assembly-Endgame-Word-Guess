@@ -39,7 +39,7 @@ export default function App() {
     lastGuessedLetter && !currentWord.includes(lastGuessedLetter);
 
   // Static values
-  const alphabet = "abcdefghijklmnopqrstuvwxyz";
+  const alphabet = selectedLanguage === "English" ? "abcdefghijklmnopqrstuvwxyz" : "aąbcćdeęfghijklłmnńoóprsśtuwyzźż";
   const { width, height } = useWindowSize();
 
   function addGuessedLetter(letter) {
