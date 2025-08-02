@@ -1,4 +1,4 @@
-export const englishWords = [
+export const englishWords: string[] = [
   "about",
   "account",
   "across",

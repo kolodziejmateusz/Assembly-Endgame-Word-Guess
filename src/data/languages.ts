@@ -1,4 +1,10 @@
-const languages = [
+type Languages = {
+  name: string;
+  backgroundColor: string;
+  color: string;
+};
+
+const languages: Languages[] = [
   {
     name: "HTML",
     backgroundColor: "#E2680F",

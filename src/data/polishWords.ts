@@ -1,4 +1,4 @@
-export const polishWords = [
+export const polishWords: string[] = [
   "kot",
   "dom",
   "las",
