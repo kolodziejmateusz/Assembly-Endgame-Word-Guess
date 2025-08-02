@@ -19,10 +19,11 @@ export default function App() {
   }
 
   // State values
-  const [selectedLanguage, setSelectedLanguage] = useState("English");
-  const [currentWord, setCurrentWord] = useState(() => getRandomWord());
-  const [guessedLetters, setGuessedLetters] = useState([]);
+  const [selectedLanguage, setSelectedLanguage] = useState<"English" | "Polish">("English");
+  const [currentWord, setCurrentWord] = useState<string>(():string => getRandomWord());
+  const [guessedLetters, setGuessedLetters] = useState<string[]>([]);
   console.log(currentWord);
+
 
   // Derived values
   const numGuessesLeft = languageArr.length - 1;
