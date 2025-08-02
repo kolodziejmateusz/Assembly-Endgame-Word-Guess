@@ -1,6 +1,11 @@
 import { englishWords } from "./englishWords";
 import { polishWords } from "./polishWords";
 
+function getRandomIndex(arr: string[]): number {
+  const randomIndex: number = Math.floor(Math.random() * arr.length);
+  return randomIndex;
+}
+
 export function getFarewellText(language: string): string {
   const options: string[] = [
     `Farewell, ${language}`,
@@ -17,15 +22,12 @@ export function getFarewellText(language: string): string {
     `${language} has left the building`,
   ];
 
-  const randomIndex: number = Math.floor(Math.random() * options.length);
-  return options[randomIndex];
+  return options[getRandomIndex(options)];
 }
 
 export function getRandomEnglishWord(): string {
-  const randomIndex: number = Math.floor(Math.random() * englishWords.length);
-  return englishWords[randomIndex];
+  return englishWords[getRandomIndex(englishWords)];
 }
 export function getRandomPolishWord(): string {
-  const randomIndex: number = Math.floor(Math.random() * polishWords.length);
-  return polishWords[randomIndex];
+  return polishWords[getRandomIndex(polishWords)];
 }
