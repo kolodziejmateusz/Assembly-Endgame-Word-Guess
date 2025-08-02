@@ -19,28 +19,34 @@ export default function App() {
   }
 
   // State values
-  const [selectedLanguage, setSelectedLanguage] = useState<"English" | "Polish">("English");
-  const [currentWord, setCurrentWord] = useState<string>(():string => getRandomWord());
+  const [selectedLanguage, setSelectedLanguage] = useState<
+    "English" | "Polish"
+  >("English");
+  const [currentWord, setCurrentWord] = useState<string>((): string =>
+    getRandomWord()
+  );
   const [guessedLetters, setGuessedLetters] = useState<string[]>([]);
   console.log(currentWord);
 
-
   // Derived values
-  const numGuessesLeft = languageArr.length - 1;
-  const wrongGuessCount = guessedLetters.filter(
+  const numGuessesLeft: number = languageArr.length - 1;
+  const wrongGuessCount: number = guessedLetters.filter(
     (letter) => !currentWord.includes(letter)
   ).length;
-  const isGameWon = currentWord
+  const isGameWon: boolean = currentWord
     .split("")
     .every((letter) => guessedLetters.includes(letter));
-  const isGameLost = wrongGuessCount >= numGuessesLeft;
-  const isGameOver = isGameWon || isGameLost;
-  const lastGuessedLetter = guessedLetters[guessedLetters.length - 1];
-  const isLastGuessIncorrect =
+  const isGameLost: boolean = wrongGuessCount >= numGuessesLeft;
+  const isGameOver: boolean = isGameWon || isGameLost;
+  const lastGuessedLetter: string = guessedLetters[guessedLetters.length - 1];
+  const isLastGuessIncorrect: boolean | "" =
     lastGuessedLetter && !currentWord.includes(lastGuessedLetter);
 
   // Static values
-  const alphabet = selectedLanguage === "English" ? "abcdefghijklmnopqrstuvwxyz" : "aąbcćdeęfghijklłmnńoóprsśtuwyzźż";
+  const alphabet =
+    selectedLanguage === "English"
+      ? "abcdefghijklmnopqrstuvwxyz"
+      : "aąbcćdeęfghijklłmnńoóprsśtuwyzźż";
   const { width, height } = useWindowSize();
 
   function addGuessedLetter(letter) {
