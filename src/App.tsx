@@ -49,13 +49,13 @@ export default function App() {
       : "aąbcćdeęfghijklłmnńoóprsśtuwyzźż";
   const { width, height } = useWindowSize();
 
-  function addGuessedLetter(letter) {
-    setGuessedLetters((prev) =>
+  function addGuessedLetter(letter: string): void {
+    setGuessedLetters((prev: string[]): string[] =>
       prev.includes(letter) ? prev : [...prev, letter]
     );
   }
 
-  function startNewGame() {
+  function startNewGame(): void {
     setCurrentWord(getRandomWord());
     setGuessedLetters([]);
   }
