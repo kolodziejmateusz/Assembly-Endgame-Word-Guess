@@ -10,6 +10,7 @@ import { useState } from "react";
 import clsx from "clsx";
 import { useWindowSize } from "react-use";
 import Confetti from "react-confetti";
+import Header from "./components/Header";
 
 export default function App() {
   function getRandomWord() {
@@ -165,13 +166,8 @@ export default function App() {
           numberOfPieces={1000}
         />
       )}
-      <header>
-        <h1>Assembly: Endgame</h1>
-        <p>
-          Guess the word in under 8 attempts to keep the programming world safe
-          from Assembly!
-        </p>
-      </header>
+
+      <Header />
       <section aria-live="polite" role="status" className={gameStatusClass}>
         {rednerGameStatus()}
       </section>
