@@ -8,9 +8,8 @@ import {
 } from "./data/utils";
 import { useState } from "react";
 import clsx from "clsx";
-import { useWindowSize } from "react-use";
-import Confetti from "react-confetti";
 import Header from "./components/Header";
+import ConfettiContainer from "./components/ConfettiContainer";
 
 export default function App() {
   function getRandomWord() {
@@ -48,7 +47,6 @@ export default function App() {
     selectedLanguage === "English"
       ? "abcdefghijklmnopqrstuvwxyz"
       : "aąbcćdeęfghijklłmnńoóprsśtuwyzźż";
-  const { width, height } = useWindowSize();
 
   function addGuessedLetter(letter: string): void {
     setGuessedLetters((prev: string[]): string[] =>
@@ -158,14 +156,7 @@ export default function App() {
 
   return (
     <main>
-      {isGameWon && (
-        <Confetti
-          width={width - 20}
-          height={height}
-          recycle={false}
-          numberOfPieces={1000}
-        />
-      )}
+      <ConfettiContainer isGameWon={isGameWon} />
 
       <Header />
       <section aria-live="polite" role="status" className={gameStatusClass}>
