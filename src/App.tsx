@@ -1,15 +1,12 @@
 import Language from "./components/Language";
 import "./app.css";
 import languageArr from "./data/languages";
-import {
-  getFarewellText,
-  getRandomEnglishWord,
-  getRandomPolishWord,
-} from "./data/utils";
+import { getRandomEnglishWord, getRandomPolishWord } from "./data/utils";
 import { useState } from "react";
 import clsx from "clsx";
 import Header from "./components/Header";
 import ConfettiContainer from "./components/ConfettiContainer";
+import GameStatus from "./components/GameStatus";
 
 export default function App() {
   function getRandomWord() {
@@ -59,7 +56,7 @@ export default function App() {
     setGuessedLetters([]);
   }
 
-  function changeLanguage(lang) {
+  function changeLanguage(lang: "English" | "Polish") {
     setSelectedLanguage(lang);
     setCurrentWord(
       lang === "English" ? getRandomEnglishWord() : getRandomPolishWord()
@@ -102,66 +99,21 @@ export default function App() {
     );
   });
 
-  const gameStatusClass = clsx("game-status", {
-    won: isGameWon,
-    lost: isGameLost,
-    farewell: !isGameOver && isLastGuessIncorrect,
-  });
-
-  function rednerGameStatus() {
-    if (!isGameOver && !isLastGuessIncorrect) {
-      return (
-        <div>
-          <button
-            className={selectedLanguage === "English" ? "active" : ""}
-            onClick={() => changeLanguage("English")}
-          >
-            English
-          </button>
-          <button
-            className={selectedLanguage === "Polish" ? "active" : ""}
-            onClick={() => changeLanguage("Polish")}
-          >
-            Polski
-          </button>
-        </div>
-      );
-    }
-
-    if (!isGameOver && isLastGuessIncorrect) {
-      return (
-        <>
-          <p>{getFarewellText(languageArr[wrongGuessCount - 1].name)}</p>
-        </>
-      );
-    }
-
-    if (isGameWon) {
-      return (
-        <>
-          <h2>You win!</h2>
-          <p>Well done! 🎉</p>
-        </>
-      );
-    }
-    if (isGameLost) {
-      return (
-        <>
-          <h2>Game over!</h2>
-          <p>You lose! Better start learning Assembly 😭</p>
-        </>
-      );
-    }
-  }
-
   return (
     <main>
       <ConfettiContainer isGameWon={isGameWon} />
 
       <Header />
-      <section aria-live="polite" role="status" className={gameStatusClass}>
-        {rednerGameStatus()}
-      </section>
+      <GameStatus
+        isGameWon={isGameWon}
+        isGameLost={isGameLost}
+        isGameOver={isGameOver}
+        isLastGuessIncorrect={isLastGuessIncorrect}
+        wrongGuessCount={wrongGuessCount}
+        selectedLanguage={selectedLanguage}
+        changeLanguage={changeLanguage}
+      />
+
       <section className="language-chips">
         {languageArr.map((language, index) => (
           <Language

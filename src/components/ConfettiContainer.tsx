@@ -1,5 +1,5 @@
 import Confetti from "react-confetti";
-import { JSX } from "react";
+import type { JSX } from "react";
 
 export default function ConfettiContainer({
   isGameWon,
