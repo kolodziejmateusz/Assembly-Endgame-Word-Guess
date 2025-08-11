@@ -1,6 +1,5 @@
-import Language from "./components/Language";
 import "./app.css";
-import languageArr from "./data/languages";
+import languages from "./data/languages";
 import { getRandomEnglishWord, getRandomPolishWord } from "./data/utils";
 import { useState } from "react";
 import clsx from "clsx";
@@ -8,6 +7,7 @@ import Header from "./components/Header";
 import ConfettiContainer from "./components/ConfettiContainer";
 import GameStatus from "./components/GameStatus";
 import AriaLiveStatus from "./components/AriaLiveStatus";
+import LanguageChips from "./components/LanguageChips";
 
 export default function App() {
   function getRandomWord() {
@@ -27,7 +27,7 @@ export default function App() {
   console.log(currentWord);
 
   // Derived values
-  const numGuessesLeft: number = languageArr.length - 1;
+  const numGuessesLeft: number = languages.length - 1;
   const wrongGuessCount: number = guessedLetters.filter(
     (letter) => !currentWord.includes(letter)
   ).length;
@@ -115,17 +115,7 @@ export default function App() {
         changeLanguage={changeLanguage}
       />
 
-      <section className="language-chips">
-        {languageArr.map((language, index) => (
-          <Language
-            key={index}
-            name={language.name}
-            backgroundColor={language.backgroundColor}
-            color={language.color}
-            className={clsx(index < wrongGuessCount && "lost")}
-          />
-        ))}
-      </section>
+      <LanguageChips languages={languages} wrongGuessCount={wrongGuessCount} />
       <section className="word">{letterElements}</section>
 
       <AriaLiveStatus
