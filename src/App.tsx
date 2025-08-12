@@ -10,6 +10,7 @@ import AriaLiveStatus from "./components/AriaLiveStatus";
 import LanguageChips from "./components/LanguageChips";
 import WordLetters from "./components/WordLetters";
 import NewGameButton from "./components/NewGameButton";
+import Keyboard from "./components/Keyboard";
 
 export default function App() {
   function getRandomWord() {
@@ -67,29 +68,6 @@ export default function App() {
     setGuessedLetters([]); // Resetowanie gry po zmianie języka
   }
 
-  const keyboardElements = alphabet.split("").map((letter, index) => {
-    const isGuessed = guessedLetters.includes(letter);
-    const isCorrect = isGuessed && currentWord.includes(letter);
-    const isWrong = isGuessed && !currentWord.includes(letter);
-    const className = clsx({
-      correct: isCorrect,
-      wrong: isWrong,
-    });
-
-    return (
-      <button
-        className={className}
-        disabled={isGameOver}
-        aria-disabled={guessedLetters.includes(letter)}
-        aria-label={`Letter ${letter}`}
-        onClick={() => addGuessedLetter(letter)}
-        key={index}
-      >
-        {letter.toUpperCase()}
-      </button>
-    );
-  });
-
   return (
     <main>
       <ConfettiContainer isGameWon={isGameWon} />
@@ -119,8 +97,14 @@ export default function App() {
         numGuessesLeft={numGuessesLeft}
         guessedLetters={guessedLetters}
       />
-      <section className="keyboard">{keyboardElements}</section>
-      <NewGameButton isGameOver={isGameOver} startNewGame={startNewGame}/>
+      <Keyboard
+        alphabet={alphabet}
+        guessedLetters={guessedLetters}
+        currentWord={currentWord}
+        isGameOver={isGameOver}
+        addGuessedLetter={addGuessedLetter}
+      />
+      <NewGameButton isGameOver={isGameOver} startNewGame={startNewGame} />
     </main>
   );
 }
