@@ -9,6 +9,7 @@ import GameStatus from "./components/GameStatus";
 import AriaLiveStatus from "./components/AriaLiveStatus";
 import LanguageChips from "./components/LanguageChips";
 import WordLetters from "./components/WordLetters";
+import NewGameButton from "./components/NewGameButton";
 
 export default function App() {
   function getRandomWord() {
@@ -58,7 +59,7 @@ export default function App() {
     setGuessedLetters([]);
   }
 
-  function changeLanguage(lang: "English" | "Polish") {
+  function changeLanguage(lang: "English" | "Polish"): void {
     setSelectedLanguage(lang);
     setCurrentWord(
       lang === "English" ? getRandomEnglishWord() : getRandomPolishWord()
@@ -119,11 +120,7 @@ export default function App() {
         guessedLetters={guessedLetters}
       />
       <section className="keyboard">{keyboardElements}</section>
-      {isGameOver && (
-        <button onClick={startNewGame} className="new-game">
-          New Game
-        </button>
-      )}
+      <NewGameButton isGameOver={isGameOver} startNewGame={startNewGame}/>
     </main>
   );
 }

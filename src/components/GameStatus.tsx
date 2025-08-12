@@ -10,7 +10,7 @@ type GameStatusProps = {
   isLastGuessIncorrect: boolean | "";
   wrongGuessCount: number;
   selectedLanguage: "English" | "Polish";
-  changeLanguage: any;
+  changeLanguage: (lang: "English" | "Polish" ) => void;
 };
 
 export default function GameStatus({
